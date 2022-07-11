@@ -14,6 +14,8 @@ MODULE usrdef_istate
    !!----------------------------------------------------------------------
    USE par_oce        ! ocean space and time domain
    USE phycst         ! physical constants
+   USE wet_dry        ! Wetting and drying
+   USE dom_oce
    !
    USE in_out_manager ! I/O manager
    USE lib_mpp        ! MPP library
@@ -61,11 +63,28 @@ CONTAINS
       DO jk = 1, jpk             ! horizontally uniform T & S profiles
          DO jj = 1, jpj
             DO ji = 1, jpi
-               pts(ji,jj,jk,jp_tem) = 20._wp * ptmask(ji,jj,jk)
-               pts(ji,jj,jk,jp_sal) = 36.25_wp * ptmask(ji,jj,jk)
+               pts(ji,jj,jk,jp_tem) = 10.0* ptmask(ji,jj,jk)
+               pts(ji,jj,jk,jp_sal) = 33.0 * ptmask(ji,jj,jk)
             END DO
          END DO
       END DO
+      
+! subtract the height of z=0 above the geoid (this allows z = 0 to be higher than all points that may become wet)   
+!      if (ll_wd) then
+      pssh(:,:) =  -ssh_ref
+
+      !
+      ! Apply minimum wetdepth criterion
+      !
+      do jj = 1,jpj
+         do ji = 1,jpi
+            IF( ht_0(ji,jj) + pssh(ji,jj)  < rn_wdmin1 ) THEN
+               pssh(ji,jj) = ptmask(ji,jj,1)*( rn_wdmin1 - (ht_0(ji,jj)) )
+            ENDIF
+         end do
+      end do
+!      endif
+
       !   
    END SUBROUTINE usr_def_istate
 
