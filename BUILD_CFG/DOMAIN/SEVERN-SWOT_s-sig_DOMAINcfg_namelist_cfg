@@ -53,7 +53,7 @@
   cn_coord_hgr = 'coordinates.nc'  ! File containing gphit (latitude) coordinate for use if ln_eq_taper=.true.
   rn_sbot_min =  1.0e-5    !  minimum depth of s-bottom surface (>0) (m)
   rn_sbot_max = 10000.0    !  maximum depth of s-bottom surface (= ocean depth) (>0) (m)
-  rn_hc       =   41.0    !  critical depth for transition to stretched coordinates
+  rn_hc       = 51.0    !  critical depth for transition to stretched coordinates
                        !!!!!!!  Envelop bathymetry
   rn_rmax     =    0.1    !  maximum cut-off r-value allowed (0<r_max<1)
                        !!!!!!!  SH94 stretching coefficients  (ln_s_sh94 = .true.)
@@ -93,6 +93,6 @@ ppkth2=999999.0,
 ppsur=999999.0,
 rn_bathy=100.0,
 rn_rdt=60.0,
-rn_wd_ref_depth=10.0,
+rn_wd_ref_depth=20.0,
 /
 

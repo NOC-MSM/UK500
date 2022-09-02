@@ -34,9 +34,9 @@
 &namrun        !   parameters of the run
 !-----------------------------------------------------------------------
    nn_no       =       0   !  Assimilation cycle index
-   cn_exp      =  "SEVERN_baroT"
+   cn_exp      =  "SEVERN_Tid_met"
    nn_it000    =  1 !  8641 ! 1   !  first time step
-   nn_itend    =  129600 !    ! 4320 per 24hr   !  last  time step
+   nn_itend    =  129600 !600 !    ! 4320 per 24hr   !  last  time step
    nn_date0    =  20211101   !  date at nit_0000 (format yyyymmdd) used if ln_rstart=F or (ln_rstart=T and nn_rstctl=0 or 1)
    nn_time0    =       0   !  initial time of day in hhmm
    nn_leapy    =       0   !  Leap year calendar (1) or not (0)
@@ -176,9 +176,9 @@
    nn_fsbc     = 1         !  frequency of SBC module call
       !                    !  (control sea-ice & iceberg model call)
                      ! Type of air-sea fluxes
-   ln_usr      = .true.   !  user defined formulation                  (T => check usrdef_sbc)
+   ln_usr      = .false.   !  user defined formulation                  (T => check usrdef_sbc)
    ln_flx      = .false.   !  flux formulation                          (T => fill namsbc_flx )
-   ln_blk      = .false.   !  Bulk formulation                          (T => fill namsbc_blk )
+   ln_blk      = .true.    !  Bulk formulation                          (T => fill namsbc_blk )
       !              ! Type of coupling (Ocean/Ice/Atmosphere) :
    ln_cpl      = .false.   !  atmosphere coupled   formulation          ( requires key_oasis3 )
    ln_mixcpl   = .false.   !  forced-coupled mixed formulation          ( requires key_oasis3 )
@@ -194,7 +194,7 @@
    ln_ice_embd = .false.   !  =T embedded sea-ice (pressure + mass and salt exchanges)
       !                    !  =F levitating ice (no pressure, mass and salt exchanges)
                      ! Misc. options of sbc :
-   ln_traqsr   = .false.   !  Light penetration in the ocean            (T => fill namtra_qsr)
+   ln_traqsr   = .true.   !  Light penetration in the ocean            (T => fill namtra_qsr)
    ln_dm2dc    = .false.   !  daily mean to diurnal cycle on short wave
    ln_ssr      = .false.   !  Sea Surface Restoring on T and/or S       (T => fill namsbc_ssr)
    nn_fwb      = 0         !  FreshWater Budget: =0 unchecked
@@ -215,6 +215,60 @@
    ln_stcor    = .false.   !  Activate Stokes Coriolis term (T => ln_wave=.true. & ln_sdw=.true. & fill namsbc_wave)
    nn_lsm      = 0         !  =0 land/sea mask for input fields is not applied (keep empty land/sea mask filename field) ,
                            !  =1:n number of iterations of land/sea mask application for input fields (fill land/sea mask filename field)
+/
+!-----------------------------------------------------------------------
+&namsbc_blk   !   namsbc_blk  generic Bulk formula                      (ln_blk = T)
+!-----------------------------------------------------------------------
+!              !  file name                   ! frequency (hours) ! variable  ! time interp. !  clim  ! 'yearly'/ ! weights                              ! rotation ! land/sea mask !
+!              !                              !  (if <0  months)  !   name    !   (logical)  !  (T/F) ! 'monthly' ! filename                             ! pairing  ! filename      !
+   sn_wndi     = 'ERA5_U10'		        ,         1         , 'U10',        .true.    , .false. , 'yearly'  , 'weights_era5_SEVERN_bicubic.nc'   , 'Uwnd'   , 'ERA5_LSM'
+   sn_wndj     = 'ERA5_V10'      	        ,         1         , 'V10',        .true.    , .false. , 'yearly'  , 'weights_era5_SEVERN_bicubic.nc'   , 'Vwnd'   , 'ERA5_LSM'
+   sn_qsr      = 'ERA5_MSDWSWRF'   		,         1         , 'MSDWSWRF',   .true.    , .false. , 'yearly'  , 'weights_era5_SEVERN_bilin.nc'  , ''       , 'ERA5_LSM'
+   sn_qlw      = 'ERA5_MSDWLWRF'                ,         1         , 'MSDWLWRF',   .true.    , .false. , 'yearly'  , 'weights_era5_SEVERN_bilin.nc'  , ''       , 'ERA5_LSM'
+   sn_tair     = 'ERA5_T2M'                     ,         1         , 'T2M',        .true.    , .false. , 'yearly'  , 'weights_era5_SEVERN_bilin.nc'  , ''       , 'ERA5_LSM'
+   sn_humi     = 'ERA5_SPH'                     ,         1         , 'SPH',        .true.    , .false. , 'yearly'  , 'weights_era5_SEVERN_bilin.nc'  , ''       , 'ERA5_LSM'
+   sn_prec     = 'ERA5_MTPR'                    ,         1         , 'MTPR',       .true.    , .false. , 'yearly'  , 'weights_era5_SEVERN_bilin.nc'  , ''       , 'ERA5_LSM'
+   sn_snow     = 'ERA5_MSR'                     ,         1         , 'MSR'    ,    .true.    , .false. , 'yearly'  , 'weights_era5_SEVERN_bilin.nc'  , ''       , 'ERA5_LSM'
+   sn_slp      = 'ERA5_MSL'                     ,         1         , 'MSL',        .true.    , .false. , 'yearly'  , 'weights_era5_SEVERN_bilin.nc'  , ''       , 'ERA5_LSM' ! DUMMY variable. Fill with T
+!   sn_slp      = 'slp.15JUNE2009_fill'        ,         6         , 'SLP'     ,    .true.    , .true. , 'yearly'  , 'weights_core_orca2_bilinear_noc.nc'  , ''       , ''
+!   sn_tdif     = 'taudif_core'                 ,        24         , 'taudif'  ,   .true.    , .true. , 'yearly'  , 'weights_bilinear_atmos.nc'  , ''       , ''
+   !                    !  bulk algorithm :
+   ln_NCAR     = .false.   ! "NCAR"      algorithm   (Large and Yeager 2008)
+   ln_COARE_3p0= .false.   ! "COARE 3.0" algorithm   (Fairall et al. 2003)
+   ln_COARE_3p5= .false.   ! "COARE 3.5" algorithm   (Edson et al. 2013)
+   ln_ECMWF    = .true.   ! "ECMWF"     algorithm   (IFS cycle 31)
+   !
+   cn_dir      = '/work/n01/n01/micdom/SEVERN-SWOT/BUILD_CFG/SURFACE_FORCING/'      !  root directory for the location of the bulk files
+   ln_taudif   = .false.   !  HF tau contribution: use "mean of stress module - module of the mean stress" data
+   rn_zqt      = 2.       !  Air temperature and humidity reference height (m)
+   rn_zu       = 10.       !  Wind vector reference height (m)
+   rn_pfac     = 1.        !  multiplicative factor for precipitation (total & snow)
+   rn_efac     = 1.        !  multiplicative factor for evaporation (0. or 1.)
+   rn_vfac     = 0.        !  multiplicative factor for ocean/ice velocity
+                           !  in the calculation of the wind stress (0.=absolute winds or 1.=relative winds)
+   ln_Cd_L12   = .false.   !  Modify the drag ice-atm and oce-atm depending on ice concentration
+                           !  This parameterization is from Lupkes et al. (JGR 2012)
+/
+!-----------------------------------------------------------------------
+&namtra_qsr    !   penetrative solar radiation                          (ln_traqsr =T)
+!-----------------------------------------------------------------------
+   !                       !  type of penetration                        (default: NO selection)
+   ln_qsr_rgb  = .true.       !  RGB light penetration (Red-Green-Blue)
+   ln_qsr_2bd  = .false.      !  2BD light penetration (two bands)
+   ln_qsr_bio  = .false.      !  bio-model light penetration
+!   ln_qsr_kd490 = .false.
+   !                       !  RGB & 2BD choices:
+   rn_abs      =   0.58       !  RGB & 2BD: fraction absorbed in the very near surface
+   rn_si0      =   0.35       !  RGB & 2BD: shortess depth of extinction
+   nn_chldta   =      0       !  RGB : Chl data (=1) or cst value (=0)
+   rn_si1      =   23.0       !  2BD : longest depth of extinction
+
+   cn_dir      = './'      !  root directory for the chlorophyl data location
+   !___________!_________________________!___________________!___________!_____________!________!___________!__________________!__________!_______________!
+   !           !  file name              ! frequency (hours) ! variable  ! time interp.!  clim  ! 'yearly'/ ! weights filename ! rotation ! land/sea mask !
+   !           !                         !  (if <0  months)  !   name    !   (logical) !  (T/F) ! 'monthly' !                  ! pairing  !    filename   !
+   sn_chl      ='kd490'                  ,        -1         , 'kd_490'  ,   .true.    , .true. , 'yearly'  , ''               , ''       , ''
+!   sn_kd490    ='kd490'                  ,        -1         , 'kd_490'  ,   .true.    , .true. , 'yearly'  , ''               , ''       , ''
 /
 !!======================================================================
 !!               ***  Lateral boundary condition  ***                 !!
