@@ -4,12 +4,12 @@
 #:'
 #
 #***********************
-#run_EXP_barotropicTide.sh
+#run_EXP_barotropicTide_WAD.sh
 #***********************
 #'
 
 # Run the experiment with contant T,S initial condition with tides-only.
-
+# with wetting & drying
 #::
 
 export CONFIG=NEMOconstTS

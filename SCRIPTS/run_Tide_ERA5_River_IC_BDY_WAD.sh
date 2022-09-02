@@ -4,16 +4,17 @@
 #:'
 #
 #******************************
-#run_EXP_Tide_ERA5_WAD.sh
+#run_Tide_ERA5_River_WAD.sh
 #******************************
 #'
 
-# Run the experiment with contant T,S initial condition with tides.
-#  and full ERA5 forcing with wetting & drying
+# Run fully forced experiments with wetting & drying
+# before running copy the correct namelist to activate 
+# initial conditions, river forcing, BDY
 #::
 
 export CONFIG=NEMOconstTS
-export EXP=$WDIR/RUN_DIRECTORIES/EXP_Tide_ERA5_WAD
+export EXP=$WDIR/RUN_DIRECTORIES/EXP_Tide_ERA5_River_IC_BDY_WAD
 
 # Choose an appropriate directory for your EXP installation
 if [ ! -d "$EXP/RESTART" ]; then
@@ -38,13 +39,7 @@ ln -s $WDIR/INPUTS/TIDES $EXP/.
 
 # Link in boundary files (just coordinates.bdy.nc)
 ln -s $WDIR/INPUTS/OBC/coordinates.bdy.nc $EXP/.
-
-# namelist_cfg
-# nambdy: Except for tides, freeze the boundary conditions. Set to initial state
-# ln_usr = true. User defined initial state and surface forcing. Here we use
-# homogenous initial conditions and no met forcing.
-# with the expression being compiled into the executable. (In
-#  ``usrdef_sbc.F90``  and ``usrdef_istate.F90``).
+ln -s $WDIR/INPUTS/OBC/ $EXP/.
 
 # Submit job
 cd $EXP
