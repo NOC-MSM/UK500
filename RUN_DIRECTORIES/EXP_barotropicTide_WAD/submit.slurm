@@ -3,7 +3,7 @@
 #SBATCH --time=00:45:00
 #SBATCH --nodes=4
 #SBATCH --cpus-per-task=1
-#SBATCH --account=n01-ACCORD
+#SBATCH --account=n01-CHAMFER
 #SBATCH --partition=standard
 #SBATCH --qos=standard
 
