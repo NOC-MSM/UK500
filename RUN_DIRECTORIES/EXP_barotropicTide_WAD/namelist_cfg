@@ -34,9 +34,9 @@
 &namrun        !   parameters of the run
 !-----------------------------------------------------------------------
    nn_no       =       0   !  Assimilation cycle index
-   cn_exp      =  "SEVERN_baroT"
+   cn_exp      =  "UK500_baroT"
    nn_it000    =  1 !  8641 ! 1   !  first time step
-   nn_itend    =  129600 !    ! 4320 per 24hr   !  last  time step
+   nn_itend    =  4320 !    ! 4320 per 24hr   !  last  time step
    nn_date0    =  20211101   !  date at nit_0000 (format yyyymmdd) used if ln_rstart=F or (ln_rstart=T and nn_rstctl=0 or 1)
    nn_time0    =       0   !  initial time of day in hhmm
    nn_leapy    =       0   !  Leap year calendar (1) or not (0)
@@ -73,7 +73,7 @@
    ln_linssh   = .false. ! .false.   !  =T  linear free surface  ==>>  model level are fixed in time
    rn_isfhmin  =    1.00   !  treshold [m] to discriminate grounding ice from floating ice
    !
-   rn_rdt      =  20.     !  time step for the dynamics and tracer
+   rn_rdt      =  80.     !  time step for the dynamics and tracer
    rn_atfp     =    0.1    !  asselin time filter parameter
    !
    ln_crs      = .false.   !  Logical switch for coarsening module      (T => fill namcrs)
@@ -118,9 +118,9 @@
    rn_bb=0.8,
    rn_efold=0.0,
    rn_hc=39.0,
-   rn_rmax=0.05,
+   rn_rmax=0,
    rn_sbot_max=6000.0,
-   rn_sbot_min=10.,
+   rn_sbot_min=0.00001,
    rn_theta=6.0,
    rn_thetb=1.0,
    rn_zb_a=0.024,
@@ -238,14 +238,13 @@
 &nam_tide      !   tide parameters                                      (default: OFF)
 !-----------------------------------------------------------------------
    ln_tide     = .true.      ! Activate tides
-   ln_tide_pot   = .false.                !  use tidal potential forcing
-         ln_scal_load  = .false.               ! Use scalar approximation for
-            rn_scal_load = 0.094               !     load potential
-         ln_read_load  = .false.               ! Or read load potential from file
-            cn_tide_load = 'tide_LOAD_grid_T.nc'  ! filename for load potential
-            !
-   ln_tide_ramp  = .false.               !  Use linear ramp for tides at startup
-   rdttideramp   =    0.                 !  ramp duration in days
+   ln_tide_pot   = .true.                !  use tidal potential forcing
+!   ln_scal_load  = .false.               ! Use scalar approximation for
+!   rn_scal_load = 0.094               !     load potential
+!   ln_read_load  = .false.               ! Or read load potential from file
+!   cn_tide_load = 'tide_LOAD_grid_T.nc'  ! filename for load potential
+   ln_tide_ramp  = .true.               !  Use linear ramp for tides at startup
+   rdttideramp   =   1.                 !  ramp duration in days
    dn_love_number = 0.69 !
     clname(1)      = 'M2'                 !  constituent name
     clname(2)      = 'S2'
@@ -333,7 +332,7 @@
 !-----------------------------------------------------------------------
 &nambdy_tide   !  tidal forcing at open boundaries
 !-----------------------------------------------------------------------
-   filtide      = 'TIDES/SEVERN_FES14_bdytide_'      !  file name root of tidal forcing files
+   filtide      = 'TIDES/UK500_FES14_bdytide_'      !  file name root of tidal forcing files
 /
 !!======================================================================
 !!                ***  Top/Bottom boundary condition  ***             !!

@@ -2,7 +2,7 @@
 #SBATCH --job-name=nemo_dom
 #SBATCH --time=00:10:00
 #SBATCH --ntasks=1
-#SBATCH --account=n01-ACCORD
+#SBATCH --account=n01-CHAMFER
 #SBATCH --partition=serial
 #SBATCH --qos=serial
 

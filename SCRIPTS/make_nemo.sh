@@ -26,8 +26,8 @@ cd $WDIR
 # Tested 10Jan22
 module swap craype-network-ofi craype-network-ucx
 module swap cray-mpich cray-mpich-ucx
-module load cray-hdf5-parallel/1.12.0.7
-module load cray-netcdf-hdf5parallel/4.7.4.7
+module load cray-hdf5-parallel/1.12.2.1
+module load cray-netcdf-hdf5parallel/4.9.0.1
 
 # Checkout the code from the paris repository
 #svn co http://forge.ipsl.jussieu.fr/nemo/svn/trunk/NEMOGCM@8395 trunk_NEMOGCM_r8395

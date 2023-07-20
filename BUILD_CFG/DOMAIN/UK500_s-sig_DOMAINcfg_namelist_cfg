@@ -23,11 +23,11 @@
    !                       !
    cp_cfg      =  "orca"   !  name of the configuration
    jp_cfg      =     220   !  resolution of the configuration
-   jpidta      =     1443   !  1st lateral dimension ( >= jpi )
-   jpjdta      =     3243   !  2nd    "         "    ( >= jpj )
+   jpidta      =    1668   !  1st lateral dimension ( >= jpi )
+   jpjdta      =    2943   !  2nd    "         "    ( >= jpj )
    jpkdta      =      31   !  number of levels      ( >= jpk )
-   jpiglo      =     1443   !  1st dimension of global domain --> i =jpidta
-   jpjglo      =     3243  !  2nd    -                  -    --> j  =jpjdta
+   jpiglo      =    1668   !  1st dimension of global domain --> i =jpidta
+   jpjglo      =    2943   !  2nd    -                  -    --> j  =jpjdta
    jpizoom     =       1   !  left bottom (i,j) indices of the zoom
    jpjzoom     =       1   !  in data domain indices
    jperio      =       0   !  lateral cond. type (between 0 and 6)
@@ -51,11 +51,11 @@
   rn_jpk      =   31       ! Number of S levels
   !ln_eq_taper = .false.   !  Tapering of S coords near equator
   cn_coord_hgr = 'coordinates.nc'  ! File containing gphit (latitude) coordinate for use if ln_eq_taper=.true.
-  rn_sbot_min =  1.0e-5    !  minimum depth of s-bottom surface (>0) (m)
-  rn_sbot_max = 10000.0    !  maximum depth of s-bottom surface (= ocean depth) (>0) (m)
-  rn_hc       = 51.0    !  critical depth for transition to stretched coordinates
+  rn_sbot_min =   1.0e-5  !  minimum depth of s-bottom surface (>0) (m)
+  rn_sbot_max =   500.0   !  maximum depth of s-bottom surface (= ocean depth) (>0) (m)
+  rn_hc       =   31.0    !  critical depth for transition to stretched coordinates
                        !!!!!!!  Envelop bathymetry
-  rn_rmax     =    0.1    !  maximum cut-off r-value allowed (0<r_max<1)
+  rn_rmax     =    0    !  maximum cut-off r-value allowed (0<r_max<1)
                        !!!!!!!  SH94 stretching coefficients  (ln_s_sh94 = .true.)
   rn_theta    =    6.0    !  surface control parameter (0<=theta<=20)
   rn_bb       =    0.8    !  stretching with SH94 s-sigma
@@ -69,30 +69,3 @@
                        !!!!!!!! Other stretching (not SH94 or SF12) [also uses rn_theta above]
   rn_thetb    =    1.0    !  bottom control parameter  (0<=thetb<= 1)
 /
-!-----------------------------------------------------------------------
-&namdom        !   space and time domain (bathymetry, mesh, timestep)
-!-----------------------------------------------------------------------
-ldbletanh=.false.,
-nn_bathy=1,
-nn_msh=1,
-ppa0=999999.0,
-ppa1=999999.0,
-ppa2=999999.0,
-ppacr=9.0,
-ppacr2=999999.0,
-ppdzmin=6.0,
-ppe1_deg=999999.0,
-ppe1_m=999999.0,
-ppe2_deg=999999.0,
-ppe2_m=999999.0,
-ppglam0=999999.0,
-ppgphi0=999999.0,
-pphmax=5720.0,
-ppkth=23.563,
-ppkth2=999999.0,
-ppsur=999999.0,
-rn_bathy=100.0,
-rn_rdt=60.0,
-rn_wd_ref_depth=20.0,
-/
-

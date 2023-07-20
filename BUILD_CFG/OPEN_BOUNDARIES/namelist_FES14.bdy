@@ -15,17 +15,17 @@
    ln_zco      = .false.   !  z-coordinate - full    steps   (T/F)  
    ln_zps      = .true.    !  z-coordinate - partial steps   (T/F)
    ln_sco      = .false.   !  s- or hybrid z-s-coordinate    (T/F)
-   rn_hmin     =   -10     !  min depth of the ocean (>0) or 
+   rn_hmin     = -10     !  min depth of the ocean (>0) or 
                            !  min number of ocean level (<0)
 
 !------------------------------------------------------------------------------
 !   s-coordinate or hybrid z-s-coordinate
 !------------------------------------------------------------------------------
-   rn_sbot_min =   10.     !  minimum depth of s-bottom surface (>0) (m)
-   rn_sbot_max = 7000.     !  maximum depth of s-bottom surface 
+   rn_sbot_min = 0.00001     !  minimum depth of s-bottom surface (>0) (m)
+   rn_sbot_max = 500.0     !  maximum depth of s-bottom surface 
                            !  (= ocean depth) (>0) (m)
    ln_s_sigma  = .false.   !  hybrid s-sigma coordinates
-   rn_hc       =  150.0    !  critical depth with s-sigma
+   rn_hc       =  51.0    !  critical depth with s-sigma
 
 !------------------------------------------------------------------------------
 !  grid information 
@@ -45,7 +45,7 @@
    sn_dst_dir      = './OUTPUT'
    sn_ncml_out     = './output_NCML'
 
-   sn_fn      = 'SEVERN_FES14'             ! prefix for output files
+   sn_fn      = 'UK500_FES14'             ! prefix for output files
    nn_fv      = -1e20                 !  set fill value for output files
    nn_src_time_adj = 0                ! src time adjustment
    sn_dst_metainfo = 'CMEMS example'
@@ -66,7 +66,7 @@
                                           !  baroclinic velocities
     ln_tra         = .false.               !  boundary conditions for T and S
     ln_ice         = .false.              !  ice boundary condition   
-    nn_rimwidth    = 9                    !  width of the relaxation zone
+    nn_rimwidth    =  9                   !  width of the relaxation zone
 
 !------------------------------------------------------------------------------
 !  unstructured open boundaries tidal parameters                        
