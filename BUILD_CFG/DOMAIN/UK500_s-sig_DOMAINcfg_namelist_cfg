@@ -69,3 +69,30 @@
                        !!!!!!!! Other stretching (not SH94 or SF12) [also uses rn_theta above]
   rn_thetb    =    1.0    !  bottom control parameter  (0<=thetb<= 1)
 /
+!-----------------------------------------------------------------------
+&namdom        !   space and time domain (bathymetry, mesh, timestep)
+!-----------------------------------------------------------------------
+ldbletanh=.false.,
+nn_bathy=1,
+nn_msh=1,
+ppa0=999999.0,
+ppa1=999999.0,
+ppa2=999999.0,
+ppacr=9.0,
+ppacr2=999999.0,
+ppdzmin=6.0,
+ppe1_deg=999999.0,
+ppe1_m=999999.0,
+ppe2_deg=999999.0,
+ppe2_m=999999.0,
+ppglam0=999999.0,
+ppgphi0=999999.0,
+pphmax=5720.0,
+ppkth=23.563,
+ppkth2=999999.0,
+ppsur=999999.0,
+rn_bathy=100.0,
+rn_rdt=60.0,
+rn_wd_ref_depth=25.0,
+/
+
