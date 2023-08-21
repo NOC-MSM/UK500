@@ -1,5 +1,5 @@
 ****************************
-# Severn regional NEMO model
+# NEMO-UK500 model
 ****************************
 
 This model configuration has been developed in order to ...
