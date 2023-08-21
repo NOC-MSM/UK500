@@ -5,7 +5,7 @@
 This model configuration has been developed in order to ...
 
 *************************************************
-## NEMO regional configuration of Severn Estuary
+## NEMO regional configuration of the UK coast
 *************************************************
 
 ### Model Summary
