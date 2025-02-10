@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=nemo_test
-#SBATCH --time=23:59:00
-#SBATCH --nodes=7
+#SBATCH --time=07:59:00
+#SBATCH --nodes=28
 #SBATCH --cpus-per-task=1
 #SBATCH --account=n01-CHAMFER
 #SBATCH --partition=standard
@@ -27,5 +27,5 @@ SHARED_ARGS="--distribution=block:block --hint=nomultithread"
 #   Using 512 MPI processes and 128 MPI processes per node
 #   srun picks up the distribution from the sbatch options
 srun --het-group=0 --nodes=1 --tasks-per-node=2 ${SHARED_ARGS} /work/n01/n01/$USER/UK500/BUILD_EXE/XIOS/xios-2.5/bin/xios_server.exe : \
-     --het-group=1 --nodes=6 --tasks-per-node=126 ${SHARED_ARGS} /work/n01/n01/$USER/UK500/BUILD_EXE/NEMO/4.0.6/cfgs/NEMOconstTS/BLD/bin/nemo.exe
+     --het-group=1 --nodes=27 --tasks-per-node=126 ${SHARED_ARGS} /work/n01/n01/$USER/UK500/BUILD_EXE/NEMO/4.0.6/cfgs/NEMOconstTS/BLD/bin/nemo.exe
 
