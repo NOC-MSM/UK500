@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=pynemo
+#SBATCH --job-name=python
 #SBATCH --time=00:30:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=3
