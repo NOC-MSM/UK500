@@ -17,10 +17,10 @@ export OMP_NUM_THREADS=1
 
 
 #generate weights
-/work/n01/n01/micdom/UK500/BUILD_EXE/NEMO/4.0.6/tools/WEIGHTS/scripgrid.exe namelist_reshape_bilin_atmos
-/work/n01/n01/micdom/UK500/BUILD_EXE/NEMO/4.0.6/tools/WEIGHTS/scrip.exe namelist_reshape_bilin_atmos
-/work/n01/n01/micdom/UK500/BUILD_EXE/NEMO/4.0.6/tools/WEIGHTS/scripshape.exe namelist_reshape_bilin_atmos
-/work/n01/n01/micdom/UK500/BUILD_EXE/NEMO/4.0.6/tools/WEIGHTS/scrip.exe namelist_reshape_bicubic_atmos
-/work/n01/n01/micdom/UK500/BUILD_EXE/NEMO/4.0.6/tools/WEIGHTS/scripshape.exe namelist_reshape_bicubic_atmos
+/work/n01/n01/$WORK/UK500/BUILD_EXE/NEMO/4.0.6/tools/WEIGHTS/scripgrid.exe namelist_reshape_bilin_atmos
+/work/n01/n01/$WORK/UK500/BUILD_EXE/NEMO/4.0.6/tools/WEIGHTS/scrip.exe namelist_reshape_bilin_atmos
+/work/n01/n01/$WORK/UK500/BUILD_EXE/NEMO/4.0.6/tools/WEIGHTS/scripshape.exe namelist_reshape_bilin_atmos
+/work/n01/n01/$WORK/UK500/BUILD_EXE/NEMO/4.0.6/tools/WEIGHTS/scrip.exe namelist_reshape_bicubic_atmos
+/work/n01/n01/$WORK/UK500/BUILD_EXE/NEMO/4.0.6/tools/WEIGHTS/scripshape.exe namelist_reshape_bicubic_atmos
 
 
