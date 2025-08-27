@@ -15,6 +15,7 @@ module load cray-hdf5-parallel/1.12.2.1
 module load cray-netcdf-hdf5parallel/4.9.0.1
 export OMP_NUM_THREADS=1
 
+source ../../SCRIPTS/make_paths.sh
 
 #generate weights
 $WORK/UK500/BUILD_EXE/NEMO/4.0.6/tools/WEIGHTS/scripgrid.exe namelist_reshape_bilin_atmos
