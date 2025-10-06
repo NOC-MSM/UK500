@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<netcdf title="aggregation example" xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2">
+  <!--variable name="vozocrtx" orgName="ubar" /-->
+  <!--variable name="vomecrty" orgName="vo" /-->
+  <!--variable name="votemper" orgName="thetao_con" /-->
+  <!--variable name="vosaline" orgName="so_abs" /-->
+  <!--variable name="vosaline"/-->
+  <!--variable name="sossheig" orgName="zos" /-->
+
+  <aggregation type="union" >
+     <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2">
+        <!--variable name="e3t" /-->
+        <aggregation type="joinExisting" dimName="time_counter" >
+		<!--scan location="/gws/nopw/j04/chamfer/AMM15_C09p2_CHAMFER/Output/RawOuput/1996/"  regExp=".*25hourm_grid_T.nc$"/-->
+		<scan location="/gws/nopw/j04/chamfer/AMM15_C09p2_CHAMFER/Output/RawOuput/1993/07/"  regExp=".*25hourm_grid_T.nc$" subdirs="false"/>
+		<scan location="/gws/nopw/j04/chamfer/AMM15_C09p2_CHAMFER/Output/RawOuput/1993/08/"  regExp=".*25hourm_grid_T.nc$" subdirs="false"/>
+		<scan location="/gws/nopw/j04/chamfer/AMM15_C09p2_CHAMFER/Output/RawOuput/1993/10/"  regExp=".*25hourm_grid_T.nc$" subdirs="false"/>
+		<scan location="/gws/nopw/j04/chamfer/AMM15_C09p2_CHAMFER/Output/RawOuput/1993/11/"  regExp=".*25hourm_grid_T.nc$" subdirs="false"/>
+		<scan location="/gws/nopw/j04/chamfer/AMM15_C09p2_CHAMFER/Output/RawOuput/1994/05/"  regExp=".*25hourm_grid_T.nc$" subdirs="false"/>
+		<scan location="/gws/nopw/j04/chamfer/AMM15_C09p2_CHAMFER/Output/RawOuput/1994/06/"  regExp=".*25hourm_grid_T.nc$" subdirs="false"/>
+        </aggregation>
+     </netcdf>
+     <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2">
+        <!--variable name="e3v" /-->
+        <aggregation type="joinExisting" dimName="time_counter" >
+		<scan location="/gws/nopw/j04/chamfer/AMM15_C09p2_CHAMFER/Output/RawOuput/1993/07/" regExp=".*25hourm_grid_V.nc$" subdirs="false"/>
+		<scan location="/gws/nopw/j04/chamfer/AMM15_C09p2_CHAMFER/Output/RawOuput/1993/08/" regExp=".*25hourm_grid_V.nc$" subdirs="false"/>
+		<scan location="/gws/nopw/j04/chamfer/AMM15_C09p2_CHAMFER/Output/RawOuput/1993/10/" regExp=".*25hourm_grid_V.nc$" subdirs="false"/>
+		<scan location="/gws/nopw/j04/chamfer/AMM15_C09p2_CHAMFER/Output/RawOuput/1993/11/" regExp=".*25hourm_grid_V.nc$" subdirs="false"/>
+		<scan location="/gws/nopw/j04/chamfer/AMM15_C09p2_CHAMFER/Output/RawOuput/1994/05/" regExp=".*25hourm_grid_V.nc$" subdirs="false"/>
+		<scan location="/gws/nopw/j04/chamfer/AMM15_C09p2_CHAMFER/Output/RawOuput/1994/06/" regExp=".*25hourm_grid_V.nc$" subdirs="false"/>
+		<!--scan location="/gws/nopw/j04/chamfer/AMM15_C09p2_CHAMFER/Output/RawOuput/1996/" regExp=".*25hourm_grid_V.nc$" /-->
+        </aggregation>
+     </netcdf>
+     <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2">
+        <!--variable name="e3u" /-->
+        <aggregation type="joinExisting" dimName="time_counter" >
+		<scan location="/gws/nopw/j04/chamfer/AMM15_C09p2_CHAMFER/Output/RawOuput/1993/07/" regExp=".*25hourm_grid_U.nc$" subdirs="false"/>
+		<scan location="/gws/nopw/j04/chamfer/AMM15_C09p2_CHAMFER/Output/RawOuput/1993/08/" regExp=".*25hourm_grid_U.nc$" subdirs="false"/>
+		<scan location="/gws/nopw/j04/chamfer/AMM15_C09p2_CHAMFER/Output/RawOuput/1993/10/" regExp=".*25hourm_grid_U.nc$" subdirs="false"/>
+		<scan location="/gws/nopw/j04/chamfer/AMM15_C09p2_CHAMFER/Output/RawOuput/1993/11/" regExp=".*25hourm_grid_U.nc$" subdirs="false"/>
+		<scan location="/gws/nopw/j04/chamfer/AMM15_C09p2_CHAMFER/Output/RawOuput/1994/05/" regExp=".*25hourm_grid_U.nc$" subdirs="false"/>
+		<scan location="/gws/nopw/j04/chamfer/AMM15_C09p2_CHAMFER/Output/RawOuput/1994/06/" regExp=".*25hourm_grid_U.nc$" subdirs="false"/>
+		<!--scan location="/gws/nopw/j04/chamfer/AMM15_C09p2_CHAMFER/Output/RawOuput/1996/" regExp=".*25hourm_grid_U.nc$" /-->
+        </aggregation>
+     </netcdf>
+  </aggregation>
+</netcdf>
